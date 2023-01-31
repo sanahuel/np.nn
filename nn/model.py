@@ -22,7 +22,7 @@ class NN:
         if derivative: return (np.exp(-x))/((np.exp(-x)+1)**2)
         return 1 / (1 + np.exp(-x))
 
-    def ReLU(self, x, derivative = False):
+    def relu(self, x, derivative = False):
         if derivative: return np.where(x>0, 1, 0)
         return np.maximum(0, x)
 
@@ -42,7 +42,7 @@ class NN:
                 for i, layer in enumerate(self.layers):
                     if i < (len(self.layers)-1):
                         if self.function == 'relu':
-                            x = self.ReLU(layer.W @ x + layer.b)
+                            x = self.relu(layer.W @ x + layer.b)
                         else:
                             x = self.sigmoid(layer.W @ x + layer.b)
                     else:
@@ -62,7 +62,7 @@ class NN:
                         delta = np.transpose(layer.W) @ delta * self.softmax(x_inter[i - 1], derivative=True)
                     else:
                         if self.function == 'relu':
-                            delta = np.transpose(layer.W) @ delta * self.ReLU(x_inter[i-1], derivative=True)
+                            delta = np.transpose(layer.W) @ delta * self.relu(x_inter[i-1], derivative=True)
                         else:
                             delta = np.transpose(layer.W) @ delta * self.sigmoid(x_inter[i-1], derivative=True)
 
@@ -74,7 +74,7 @@ class NN:
         for x, y in zip(X, Y):
             for idx, layer in enumerate(self.layers):
                 if self.function == 'relu':
-                    x = self.ReLU(np.dot(layer.W, x) + layer.b)
+                    x = self.relu(np.dot(layer.W, x) + layer.b)
                 else:
                     x = self.sigmoid(np.dot(layer.W, x) + layer.b)
 
