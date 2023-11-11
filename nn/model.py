@@ -53,7 +53,7 @@ class NN:
                 n_correct += int(np.argmax(x) == np.argmax(y))
 
                 # backpropagation
-                delta = x - y
+                delta = np.square(x - y)
                 for i, layer in reversed(list(enumerate(self.layers))):
                     layer.W += -lr * delta @ np.transpose(x_input if i==0 else x_inter[i-1])
                     layer.b += -lr * delta
