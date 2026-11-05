@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "np-nn"
+version = "0.2.0"
+description = "Small neural network library from scratch using NumPy"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "pillow>=9.0",
+    "scikit-learn>=1.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "nbformat>=5", "nbconvert>=7", "ipykernel>=6"]
+bench = ["torch>=1.13"]
+
+[tool.setuptools]
+packages = ["nn"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not slow'"
+markers = ["slow: tests lentos o que descargan datos (ejecutar con -m slow)"]
