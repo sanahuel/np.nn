@@ -35,9 +35,4 @@ def test_moons_legacy_min_accuracy():
     Y = _legacy_onehot(y, 2)
     nn = NN(layers=[2, 16, 2], function='relu')
     nn.train(X, Y, epochs=30, lr=0.01)
-    correct = 0
-    for x, t in zip(X, Y):
-        for layer in nn.layers:
-            x = layer.forward(x)
-        correct += int(np.argmax(x) == np.argmax(t))
-    assert correct / len(X) >= 0.87
+    assert nn.test(X, Y, verbose=False) >= 0.87
