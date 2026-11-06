@@ -1,0 +1,3 @@
+framework,epochs,batch_size,s_per_epoch,test_acc,cpu,numpy_version,torch_version,torch_threads
+np.nn,5,128,2.536192600009963,0.9778,"Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",2.2.6,,
+PyTorch,5,128,2.5007968000136316,0.9775,"Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",2.2.6,2.14.1+cpu,6
